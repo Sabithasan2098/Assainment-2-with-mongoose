@@ -1,27 +1,20 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const app = express();
-const port = 5000;
+import mongoose from "mongoose";
+import app from "./app";
+
+const port: Number = 5000;
 
 // database connection------------------//
 
 async function main() {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/test");
+    await mongoose.connect("mongodb://127.0.0.1:27017/mongoose-Assignment");
 
     console.log("database connection successful");
-  } catch {
-    console.log("failed to connect");
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`);
+    });
+  } catch (error) {
+    console.log("failed to connect", error);
   }
 }
 main();
-
-// -------------------------------------//
-
-app.get("/", (req, res) => {
-  res.send("My mongoose server is running now");
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
