@@ -1,7 +1,17 @@
 import express from "express";
-import { createUser } from "./user.controller";
+import {
+  createUser,
+  getSpecificUsers,
+  getUsers,
+  getAllUsers,
+  getTopRatingBook,
+} from "./user.controller";
 const router = express.Router();
 
-router.get("/", createUser);
+router.post("/postUsers", createUser);
+router.get("/getAllUsers", getAllUsers);
+router.get("/getUsers", getUsers);
+router.get("/getSpecificAllUsers", getSpecificUsers);
+router.get("/getTopRatingBook", getTopRatingBook);
 
 export default router;
